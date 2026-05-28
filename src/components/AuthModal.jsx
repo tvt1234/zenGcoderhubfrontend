@@ -23,7 +23,7 @@ const AuthModal = ({ type, isOpen, onClose }) => {
   e.preventDefault();
 
   try {
-    // SIGNUP
+    
     if (type === "signup") {
       const res = await fetch("https://zengcodershub-backend.onrender.com/api/auth/register", {
         method: "POST",
