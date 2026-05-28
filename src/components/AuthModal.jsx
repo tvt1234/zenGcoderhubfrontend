@@ -36,7 +36,6 @@ const AuthModal = ({ type, isOpen, onClose }) => {
       const data = await res.json();
 
       if (!res.ok) throw new Error(data.message || "Signup failed");
-
       alert("Signup successful");
     }
 
