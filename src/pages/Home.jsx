@@ -39,7 +39,7 @@ const Home = () => {
     },
     {
       name: "Docker",
-      image: "https://images.unsplash.com/photo-1605745346231-2a6c4e3c6c3d",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
     },
     {
       name: "Kafka",
