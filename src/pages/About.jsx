@@ -115,12 +115,12 @@ const About = () => {
               color: "#475569",
             }}
           >
-            Founded in 2010, ZengCoders is a global
-            leader in digital skills training. Our
-            programs are designed with industry
-            experts, corporations, and universities,
-            featuring live interactive classes and
-            real-world projects.
+            Founded in 2026, ZengCoders is a leading industrial training provider 
+specializing in IT, Computer Science, and AIML (Artificial Intelligence & Machine Learning). 
+
+Our programs are meticulously designed in collaboration with industry experts, 
+corporations, and universities. We offer live interactive classes, hands-on real-world 
+projects, and practical training tailored for engineers and professionals.
           </p>
 
           <p

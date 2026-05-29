@@ -129,12 +129,12 @@ const Footer = () => {
 
           <ContactItem
             icon={<FaMapMarkerAlt />}
-            text="ZengCoders Tech Park, Hyderabad, India"
+            text="ZengCoders DLF PHASE 3,GURGAON, HARYANA"
           />
 
           <ContactItem
             icon={<FaPhoneAlt />}
-            text="+91 9876543210"
+            text="+91 9211035927"
           />
 
           <ContactItem
