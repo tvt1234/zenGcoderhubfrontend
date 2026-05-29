@@ -23,15 +23,15 @@ const Home = () => {
     },
     {
       name: "Python",
-      image: "https://images.unsplash.com/photo-1526374965328-7f61d4d7f9c7",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
     },
     {
       name: "MongoDB",
-      image: "https://images.unsplash.com/photo-1591799264318-7e6ef8f0f1e4",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
     },
     {
       name: "MySQL",
-      image: "https://images.unsplash.com/photo-1544383835-bda2bc4d4f6e",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
     },
     {
       name: "AWS",
