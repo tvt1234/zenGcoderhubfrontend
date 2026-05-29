@@ -18,12 +18,20 @@ const Home = () => {
       image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee",
     },
     {
+      name: "JavaScript",
+      image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479", // JS related
+    },
+    {
       name: "Python",
       image: "https://images.unsplash.com/photo-1526374965328-7f61d4d7f9c7",
     },
     {
       name: "MongoDB",
-      image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479", // MongoDB related
+      image: "https://images.unsplash.com/photo-1591799264318-7e6ef8f0f1e4",
+    },
+    {
+      name: "MySQL",
+      image: "https://images.unsplash.com/photo-1544383835-bda2bc4d4f6e",
     },
     {
       name: "AWS",
@@ -45,7 +53,7 @@ const Home = () => {
 
   return (
     <div>
-      {/* Hero Section */}
+      {/* Hero Section - remains same */}
       <section
         style={{
           background: "linear-gradient(to right, #020617, #1e3a8a)",
@@ -53,7 +61,7 @@ const Home = () => {
           padding: "100px 20px",
         }}
       >
-        {/* ... Hero Section remains same ... */}
+        {/* Your existing hero section code... */}
       </section>
 
       {/* Technologies Section */}
@@ -136,18 +144,16 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Rest of your components */}
       <StatsSection />
       <Testimonials />
       <JoinNowModal isOpen={open} onClose={() => setOpen(false)} />
 
-      {/* CTA Section */}
-      {/* ... your CTA section ... */}
+      {/* CTA Section - remains same */}
     </div>
   );
 };
 
-/* Styles */
+/* Styles - keep your existing styles */
 const primaryBtn = {
   background: "#2563eb",
   color: "white",
