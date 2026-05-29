@@ -95,7 +95,7 @@ const Contact = () => {
             </p>
 
             <p style={infoText}>
-              📞 +91 9876543210
+              📞 +91 9211035927
             </p>
 
             <p style={infoText}>
