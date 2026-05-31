@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const AuthModal = ({ type, isOpen, onClose }) => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "",
     email: "",
     password: "",
-    mobile: "",   
+    mobile: "",
     role: "student",
   });
 
@@ -20,62 +22,71 @@ const AuthModal = ({ type, isOpen, onClose }) => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    
-    if (type === "signup") {
-      const res = await fetch("https://zengcodershub-backend.onrender.com/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
+    try {
+      if (type === "signup") {
+        const res = await fetch(
+          "https://zengcodershub-backend.onrender.com/api/auth/register",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(form),
+          },
+        );
 
-      const data = await res.json();
+        const data = await res.json();
 
-      if (!res.ok) throw new Error(data.message || "Signup failed");
-      alert("Signup successful");
+        if (!res.ok) throw new Error(data.message || "Signup failed");
+        alert("Signup successful");
+      }
+
+      // LOGIN
+      else {
+        const res = await fetch(
+          "https://zengcodershub-backend.onrender.com/api/auth/login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: form.email,
+              password: form.password,
+            }),
+          },
+        );
+
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data.message || "Login failed");
+
+        // IMPORTANT: backend should return token + user role
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("role", data.user.role);
+        console.log("User Role:", data.user.role);
+        alert("Login successful", data.user.role);
+
+        const role = data.user.role;
+
+        onClose();
+
+        if (role === "student") {
+          navigate("/student");
+        } else if (role === "teacher") {
+          navigate("/teacher");
+        } else if (role === "admin") {
+          navigate("/admin/dashboard");
+        }
+      }
+
+      onClose();
+    } catch (err) {
+      alert(err.message);
     }
-
-    // LOGIN
-    else {
-      const res = await fetch("https://zengcodershub-backend.onrender.com/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: form.email,
-          password: form.password,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) throw new Error(data.message || "Login failed");
-
-      // IMPORTANT: backend should return token + user role
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("role", data.user.role);
-      console.log("User Role:", data.user.role);
-      alert("Login successful", data.user.role);
-
-      // redirect based on role
-      const role = data.user.role;
-
-      if (role === "student") window.location.href = "/student";
-      else if (role === "teacher") window.location.href = "/teacher";
-      else if (role === "admin") window.location.href = "/admin";
-    }
-
-    onClose();
-
-  } catch (err) {
-    alert(err.message);
-  }
-};
+  };
 
   return (
     <div style={overlay}>
@@ -131,27 +142,15 @@ const AuthModal = ({ type, isOpen, onClose }) => {
 
           {/* ROLE ONLY FOR SIGNUP */}
           {type === "signup" && (
-            <select
-              name="role"
-              onChange={handleChange}
-              style={input}
-            >
-              <option value="student">
-                Student
-              </option>
-              <option value="teacher">
-                Teacher
-              </option>
-              <option value="admin">
-                Admin
-              </option>
+            <select name="role" onChange={handleChange} style={input}>
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+              <option value="admin">Admin</option>
             </select>
           )}
 
           <button style={btn}>
-            {type === "login"
-              ? "Login"
-              : "Create Account"}
+            {type === "login" ? "Login" : "Create Account"}
           </button>
         </form>
       </div>
