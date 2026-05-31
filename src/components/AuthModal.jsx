@@ -59,7 +59,7 @@ const AuthModal = ({ type, isOpen, onClose }) => {
       // IMPORTANT: backend should return token + user role
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.user.role);
-
+      console.log("User Role:", data.user.role);
       alert("Login successful", data.user.role);
 
       // redirect based on role
