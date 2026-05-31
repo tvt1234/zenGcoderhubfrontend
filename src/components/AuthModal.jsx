@@ -6,7 +6,7 @@ const AuthModal = ({ type, isOpen, onClose }) => {
     name: "",
     email: "",
     password: "",
-    mobile: "",   // ✅ ADDED MOBILE NUMBER
+    mobile: "",   
     role: "student",
   });
 
@@ -60,7 +60,7 @@ const AuthModal = ({ type, isOpen, onClose }) => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.user.role);
 
-      alert("Login successful");
+      alert("Login successful", data.user.role);
 
       // redirect based on role
       const role = data.user.role;
