@@ -1,4 +1,9 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -8,12 +13,6 @@ import Contact from "./pages/Contact";
 import StudentDashboard from "./pages/dashboard/StudentDashboard";
 import TeacherDashboard from "./pages/dashboard/TeacherDashboard";
 import AdminDashboard from "./pages/dashboard/AdminDashboard";
-
-import ProtectedRoute from "./components/ProtectedRoute";
-
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import AdminLayout from "./components/AdminLayout";
 
 import Users from "./pages/dashboard/Users";
 import Courses from "./pages/dashboard/Courses";
@@ -25,21 +24,32 @@ import Notifications from "./pages/dashboard/Notifications";
 import Settings from "./pages/dashboard/Settings";
 import Logs from "./pages/dashboard/Logs";
 
+import ProtectedRoute from "./components/ProtectedRoute";
+import AdminLayout from "./components/AdminLayout";
+
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
 import "./global.css";
-function App() {
+
+function AppContent() {
+  const location = useLocation();
+
+  const isAdminRoute =
+    location.pathname.startsWith("/admin");
+
   return (
-    <BrowserRouter>
-      <Header />
+    <>
+      {!isAdminRoute && <Header />}
 
       <Routes>
-        {/* PUBLIC ROUTES */}
+        {/* Public Pages */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/contact" element={<Contact />} />
 
-
-        {/* DASHBOARDS */}
+        {/* Student */}
         <Route
           path="/student"
           element={
@@ -48,8 +58,8 @@ function App() {
             </ProtectedRoute>
           }
         />
-        
 
+        {/* Teacher */}
         <Route
           path="/teacher"
           element={
@@ -59,28 +69,40 @@ function App() {
           }
         />
 
-       <Route
-  path="/admin"
-  element={
-    <ProtectedRoute role="admin">
-      <AdminLayout />
-    </ProtectedRoute>
-  }
->
-  <Route path="dashboard" element={<AdminDashboard />} />
-  <Route path="users" element={<Users />} />
-  <Route path="courses" element={<Courses />} />
-  <Route path="teachers" element={<Teachers />} />
-  <Route path="students" element={<Students />} />
-  <Route path="reports" element={<Reports />} />
-  <Route path="payments" element={<Payments />} />
-  <Route path="notifications" element={<Notifications />} />
-  <Route path="settings" element={<Settings />} />
-  <Route path="logs" element={<Logs />} />
-</Route>
+        {/* Admin */}
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute role="admin">
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="users" element={<Users />} />
+          <Route path="courses" element={<Courses />} />
+          <Route path="teachers" element={<Teachers />} />
+          <Route path="students" element={<Students />} />
+          <Route path="reports" element={<Reports />} />
+          <Route path="payments" element={<Payments />} />
+          <Route
+            path="notifications"
+            element={<Notifications />}
+          />
+          <Route path="settings" element={<Settings />} />
+          <Route path="logs" element={<Logs />} />
+        </Route>
       </Routes>
 
-      <Footer />
+      {!isAdminRoute && <Footer />}
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
     </BrowserRouter>
   );
 }
