@@ -12,7 +12,7 @@ import Contact from "./pages/Contact";
 
 import StudentDashboard from "./pages/dashboard/StudentDashboard";
 import TeacherDashboard from "./pages/dashboard/TeacherDashboard";
-import AdminDashboard from "./pages/dashboard/AdminDashboard";
+// import AdminDashboard from "./pages/dashboard/AdminDashboard";
 
 import Users from "./pages/dashboard/Users";
 import Courses from "./pages/dashboard/Courses";
@@ -22,7 +22,7 @@ import Reports from "./pages/dashboard/Reports";
 import Payments from "./pages/dashboard/Payments";
 import Notifications from "./pages/dashboard/Notifications";
 import Settings from "./pages/dashboard/Settings";
-import Logs from "./pages/dashboard/Logs";
+// import Logs from "./pages/dashboard/Logs";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminLayout from "./components/AdminLayout";
@@ -78,8 +78,8 @@ function AppContent() {
             </ProtectedRoute>
           }
         >
-          <Route index element={<AdminDashboard />} />
-          <Route path="dashboard" element={<AdminDashboard />} />
+          {/* <Route index element={<AdminDashboard />} /> */}
+          <Route path="dashboard" element={<AdminLayout />} />
           <Route path="users" element={<Users />} />
           <Route path="courses" element={<Courses />} />
           <Route path="teachers" element={<Teachers />} />
@@ -91,7 +91,7 @@ function AppContent() {
             element={<Notifications />}
           />
           <Route path="settings" element={<Settings />} />
-          <Route path="logs" element={<Logs />} />
+          {/* <Route path="logs" element={<Logs />} /> */}
         </Route>
       </Routes>
 
