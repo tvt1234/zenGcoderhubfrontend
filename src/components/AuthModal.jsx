@@ -78,7 +78,7 @@ const AuthModal = ({ type, isOpen, onClose }) => {
         } else if (role === "teacher") {
           navigate("/teacher");
         } else if (role === "admin") {
-          navigate("/admin/dashboard");
+         navigate("/admin");
         }
       }
 
