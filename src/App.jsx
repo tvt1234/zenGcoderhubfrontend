@@ -78,6 +78,7 @@ function AppContent() {
             </ProtectedRoute>
           }
         >
+          <Route index element={<AdminDashboard />} />
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="users" element={<Users />} />
           <Route path="courses" element={<Courses />} />
