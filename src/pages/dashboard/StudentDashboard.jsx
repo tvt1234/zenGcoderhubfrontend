@@ -12,6 +12,7 @@ import {
   Bar,
 } from "recharts";
 
+
 const StudentDashboard = () => {
   const performanceData = [
     { month: "Jan", score: 72 },
