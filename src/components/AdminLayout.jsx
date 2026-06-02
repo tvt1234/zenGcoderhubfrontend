@@ -15,7 +15,7 @@ const AdminLayout = () => {
         }}
       >
         <h2 style={{color: "red", marginBottom: "20px"}}>
-          ✅ Admin Layout is Working (Debug)
+         
         </h2>
         <Outlet />
       </div>
