@@ -89,12 +89,10 @@ const Courses = () => {
         }}
       >
         <h1 style={{ margin: 0 }}>
-          📚 Course Management
+          📚 Course 
         </h1>
 
-        <p style={{ marginTop: 8 }}>
-          Manage all your training courses easily
-        </p>
+        
       </div>
 
       {/* Add Button */}

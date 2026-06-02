@@ -121,18 +121,10 @@ const Students = () => {
             fontSize: "34px",
           }}
         >
-          🎓 Student Management
+          🎓 Student
         </h1>
 
-        <p
-          style={{
-            marginTop: "8px",
-            opacity: 0.9,
-          }}
-        >
-          Manage student records and course
-          enrollments
-        </p>
+        
       </div>
 
       {/* Add Button */}

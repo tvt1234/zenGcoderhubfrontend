@@ -69,11 +69,9 @@ const Payments = () => {
         }}
       >
         <h1 style={{ margin: 0 }}>
-          💳 Payment Management
+          💳 Payment 
         </h1>
-        <p style={{ marginTop: "8px" }}>
-          Track student payments and revenue
-        </p>
+        
       </div>
 
       {/* Stats Cards */}

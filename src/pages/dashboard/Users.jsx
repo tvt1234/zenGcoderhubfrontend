@@ -106,11 +106,11 @@ const Users = () => {
         }}
       >
         <h1 style={{ margin: 0 }}>
-          👥 User Management
+          👥 User 
         </h1>
 
         <p style={{ marginTop: "8px" }}>
-          Manage students, teachers and admin users
+          
         </p>
       </div>
 
