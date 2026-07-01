@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 
 const AuthModal = ({ type = "login", isOpen, onClose }) => {
   const navigate = useNavigate();
@@ -33,8 +35,8 @@ const AuthModal = ({ type = "login", isOpen, onClose }) => {
     try {
       const url =
         mode === "signup"
-          ? "http://localhost:5000/api/auth/register"
-          : "http://localhost:5000/api/auth/login";
+          ? `${BASE_URL}/auth/register`
+          : `${BASE_URL}/auth/login`;
 
       const payload =
         mode === "signup"
