@@ -7,47 +7,56 @@ import JoinNowModal from "../components/JoinNowModal";
 const Home = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-
   const courses = [
     {
       name: "Node.js",
-      image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      path: "/courses/nodejs",
     },
     {
       name: "React.js",
-      image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      path: "/courses/reactjs",
     },
     {
       name: "JavaScript",
-      image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479", // JS related
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      path: "/courses/javascript",
     },
     {
       name: "Python",
       image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+      path: "/courses/python",
     },
     {
       name: "MongoDB",
       image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+      path: "/courses/mongodb",
     },
     {
       name: "MySQL",
       image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+      path: "/courses/mysql",
     },
     {
       name: "AWS",
       image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa",
+      path: "/courses/aws",
     },
     {
       name: "Docker",
       image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+      path: "/courses/docker",
     },
     {
       name: "Kafka",
       image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
+      path: "/courses/kafka",
     },
     {
       name: "Redis",
       image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3",
+      path: "/courses/redis",
     },
   ];
 
@@ -84,62 +93,79 @@ const Home = () => {
               gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
               gap: "30px",
             }}
-          >
-            {courses.map((course) => (
-              <div
-                key={course.name}
+          >{courses.map((course) => (
+            <div
+              key={course.name}
+              onClick={() => navigate(course.path)}
+              style={{
+                background: "#f8fafc",
+                borderRadius: "20px",
+                overflow: "hidden",
+                boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
+                transition: "all 0.3s ease",
+                cursor: "pointer",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-8px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
+            >
+              <img
+                src={course.image}
+                alt={course.name}
                 style={{
-                  background: "#f8fafc",
-                  borderRadius: "20px",
-                  overflow: "hidden",
-                  boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
-                  transition: "0.3s",
+                  width: "100%",
+                  height: "220px",
+                  objectFit: "contain",
+                  padding: "20px",
+                  background: "#fff",
                 }}
-              >
-                <img
-                  src={course.image}
-                  alt={course.name}
+              />
+
+              <div style={{ padding: "25px" }}>
+                <h3
                   style={{
-                    width: "100%",
-                    height: "220px",
-                    objectFit: "cover",
+                    fontSize: "28px",
+                    color: "#0f172a",
                   }}
-                />
-                <div style={{ padding: "25px" }}>
-                  <h3
-                    style={{
-                      fontSize: "28px",
-                      color: "#0f172a",
-                    }}
-                  >
-                    {course.name}
-                  </h3>
-                  <p
-                    style={{
-                      marginTop: "15px",
-                      color: "#475569",
-                      lineHeight: "28px",
-                    }}
-                  >
-                    Professional industry-focused training with live projects.
-                  </p>
-                  <button
-                    style={{
-                      marginTop: "20px",
-                      background: "#2563eb",
-                      color: "white",
-                      border: "none",
-                      padding: "12px 25px",
-                      borderRadius: "10px",
-                      cursor: "pointer",
-                      fontSize: "16px",
-                    }}
-                  >
-                    Enroll Now
-                  </button>
-                </div>
+                >
+                  {course.name}
+                </h3>
+
+                <p
+                  style={{
+                    marginTop: "15px",
+                    color: "#475569",
+                    lineHeight: "28px",
+                  }}
+                >
+                  Professional industry-focused training with live projects.
+                </p>
+
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setOpen(true);
+                  }}
+                  style={{
+                    marginTop: "20px",
+                    background: "#2563eb",
+                    color: "white",
+                    border: "none",
+                    padding: "12px 25px",
+                    borderRadius: "10px",
+                    cursor: "pointer",
+                    fontSize: "16px",
+                  }}
+                >
+                  Enroll Now
+                </button>
               </div>
-            ))}
+            </div>
+          ))}
+
           </div>
         </div>
       </section>

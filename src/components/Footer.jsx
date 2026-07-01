@@ -114,6 +114,9 @@ const Footer = () => {
           <FooterLink text="MongoDB" />
           <FooterLink text="AWS Cloud" />
           <FooterLink text="Docker & DevOps" />
+          <FooterLink text="Mysql" />
+          <FooterLink text="Rabbitmq" />
+          <FooterLink text="React.js" />
         </div>
 
         {/* Contact */}

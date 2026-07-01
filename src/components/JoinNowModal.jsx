@@ -70,9 +70,15 @@ const JoinNowModal = ({ isOpen, onClose }) => {
             <option value="">Select Course</option>
             <option>Node.js</option>
             <option>React.js</option>
+            <option>JavaScript</option>
             <option>Python</option>
             <option>AWS</option>
             <option>Docker</option>
+            <option>Redis</option>
+            <option>MySQL</option>
+            <option>MongoDB</option>
+            <option>Kafka</option>
+            <option>Java</option>
           </select>
 
           <button style={btnStyle}>

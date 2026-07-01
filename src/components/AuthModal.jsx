@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const AuthModal = ({ type, isOpen, onClose }) => {
+const AuthModal = ({ type = "login", isOpen, onClose }) => {
   const navigate = useNavigate();
+
+  const [mode, setMode] = useState(type);
+  const [loading, setLoading] = useState(false);
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -12,97 +16,94 @@ const AuthModal = ({ type, isOpen, onClose }) => {
     role: "student",
   });
 
+  useEffect(() => {
+    setMode(type);
+  }, [type]);
+
   if (!isOpen) return null;
 
   const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
-      if (type === "signup") {
-        const res = await fetch(
-          "https://zengcodershub-backend.onrender.com/api/auth/register",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(form),
-          },
-        );
+      const url =
+        mode === "signup"
+          ? "http://localhost:5000/api/auth/register"
+          : "http://localhost:5000/api/auth/login";
 
-        const data = await res.json();
+      const payload =
+        mode === "signup"
+          ? form
+          : { email: form.email, password: form.password };
 
-        if (!res.ok) throw new Error(data.message || "Signup failed");
-        alert("Signup successful");
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Request failed");
       }
 
-      // LOGIN
-      else {
-        const res = await fetch(
-          "https://zengcodershub-backend.onrender.com/api/auth/login",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email: form.email,
-              password: form.password,
-            }),
-          },
-        );
-
-        const data = await res.json();
-
-        if (!res.ok) throw new Error(data.message || "Login failed");
-
-        // IMPORTANT: backend should return token + user role
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("role", data.user.role);
-        console.log("User Role:", data.user.role);
-        alert("Login successful", data.user.role);
-
-        const role = data.user.role;
-
-        onClose();
-
-        if (role === "student") {
-          navigate("/student");
-        } else if (role === "teacher") {
-          navigate("/teacher");
-        } else if (role === "admin") {
-         navigate("/admin");
-        }
+      // ================= SIGNUP =================
+      if (mode === "signup") {
+        alert("Signup successful! Please login now.");
+        setMode("login");
+        setLoading(false);
+        return;
       }
+
+      // ================= LOGIN =================
+      localStorage.setItem("userId", data.user._id);
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("role", data.user.role);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      window.dispatchEvent(new Event("authChanged"));
+
+      // pending course flow
+      const pending = localStorage.getItem("pendingCourse");
 
       onClose();
+
+      if (pending) {
+        localStorage.removeItem("pendingCourse");
+        navigate("/courses");
+        return;
+      }
+
+      if (data.user.role === "admin") navigate("/admin");
+      else if (data.user.role === "teacher") navigate("/teacher");
+      else navigate("/student");
+
     } catch (err) {
       alert(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div style={overlay}>
       <div style={modal}>
-        {/* CLOSE */}
         <button onClick={onClose} style={closeBtn}>
           <FaTimes />
         </button>
 
-        <h2 style={{ marginBottom: "20px" }}>
-          {type === "login" ? "Login" : "Signup"}
+        <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
+          {mode === "login" ? "Login" : "Signup"}
         </h2>
 
         <form onSubmit={handleSubmit}>
-          {/* NAME ONLY FOR SIGNUP */}
-          {type === "signup" && (
+          {mode === "signup" && (
             <input
               name="name"
               placeholder="Full Name"
@@ -113,6 +114,7 @@ const AuthModal = ({ type, isOpen, onClose }) => {
           )}
 
           <input
+            type="email"
             name="email"
             placeholder="Email"
             onChange={handleChange}
@@ -120,8 +122,7 @@ const AuthModal = ({ type, isOpen, onClose }) => {
             required
           />
 
-          {/* MOBILE ONLY FOR SIGNUP */}
-          {type === "signup" && (
+          {mode === "signup" && (
             <input
               name="mobile"
               placeholder="Mobile Number"
@@ -140,8 +141,32 @@ const AuthModal = ({ type, isOpen, onClose }) => {
             required
           />
 
-          {/* ROLE ONLY FOR SIGNUP */}
-          {type === "signup" && (
+          {/* Forgot Password */}
+          {mode === "login" && (
+            <div
+              style={{
+                textAlign: "right",
+                marginBottom: "12px",
+              }}
+            >
+              <span
+                onClick={() => {
+                  onClose(); // modal close
+                  navigate("/forgot-password"); // page open
+                }}
+                style={{
+                  color: "#2563eb",
+                  cursor: "pointer",
+                  fontSize: "14px",
+                }}
+              >
+                Forgot Password?
+              </span>
+            </div>
+          )}
+
+
+          {mode === "signup" && (
             <select name="role" onChange={handleChange} style={input}>
               <option value="student">Student</option>
               <option value="teacher">Teacher</option>
@@ -149,22 +174,41 @@ const AuthModal = ({ type, isOpen, onClose }) => {
             </select>
           )}
 
-          <button style={btn}>
-            {type === "login" ? "Login" : "Create Account"}
+          <button style={btn} disabled={loading}>
+            {loading ? "Please wait..." : mode === "login" ? "Login" : "Create Account"}
           </button>
         </form>
+
+        {/* SWITCH */}
+        <p style={{ textAlign: "center", marginTop: "15px" }}>
+          {mode === "login" ? (
+            <>
+              Don’t have an account?{" "}
+              <span style={link} onClick={() => setMode("signup")}>
+                Signup
+              </span>
+            </>
+          ) : (
+            <>
+              Already have an account?{" "}
+              <span style={link} onClick={() => setMode("login")}>
+                Login
+              </span>
+            </>
+          )}
+        </p>
       </div>
     </div>
   );
 };
 
-/* STYLES */
+export default AuthModal;
+
+/* ================= STYLES ================= */
+
 const overlay = {
   position: "fixed",
-  top: 0,
-  left: 0,
-  width: "100%",
-  height: "100%",
+  inset: 0,
   background: "rgba(0,0,0,0.6)",
   display: "flex",
   justifyContent: "center",
@@ -173,10 +217,11 @@ const overlay = {
 };
 
 const modal = {
-  background: "white",
+  background: "#fff",
   padding: "30px",
   borderRadius: "15px",
-  width: "380px",
+  width: "400px",
+  maxWidth: "90%",
   position: "relative",
 };
 
@@ -184,8 +229,8 @@ const closeBtn = {
   position: "absolute",
   top: "10px",
   right: "10px",
-  background: "transparent",
   border: "none",
+  background: "transparent",
   cursor: "pointer",
   fontSize: "18px",
 };
@@ -202,10 +247,15 @@ const btn = {
   width: "100%",
   padding: "12px",
   background: "#2563eb",
-  color: "white",
+  color: "#fff",
   border: "none",
   borderRadius: "8px",
+  fontWeight: "bold",
   cursor: "pointer",
 };
 
-export default AuthModal;
+const link = {
+  color: "blue",
+  cursor: "pointer",
+  fontWeight: "500",
+};

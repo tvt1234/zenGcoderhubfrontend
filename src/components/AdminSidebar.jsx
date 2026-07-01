@@ -1,11 +1,12 @@
-import { Link, useLocation } from "react-router-dom";
+
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const AdminSidebar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const menus = [
     { title: "Dashboard", path: "/admin/dashboard" },
-    { title: "Users", path: "/admin/users" },
     { title: "Courses", path: "/admin/courses" },
     { title: "Teachers", path: "/admin/teachers" },
     { title: "Students", path: "/admin/students" },
@@ -13,57 +14,110 @@ const AdminSidebar = () => {
     { title: "Payments", path: "/admin/payments" },
     { title: "Notifications", path: "/admin/notifications" },
     { title: "Settings", path: "/admin/settings" },
-    { title: "Logs", path: "/admin/logs" },
+    { title: "SupportMessages", path: "/admin/SupportMessages" },
   ];
 
+  const handleLogout = () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    navigate("/login");
+  };
+
   return (
-    <div
-      style={{
-        width: "260px",
-        background: "#1e293b",
-        color: "#fff",
-        minHeight: "100vh",
-        padding: "20px 0",
-        position: "fixed",
-        left: 0,
-        top: 0,
-        boxShadow: "2px 0 10px rgba(0,0,0,0.1)",
-        zIndex: 100,
-      }}
-    >
-      <div style={{ padding: "0 20px 30px" }}>
-        <h2 style={{ margin: 0, color: "#60a5fa" }}>ZengCoders</h2>
-        <p style={{ margin: "5px 0 0", fontSize: "14px", opacity: 0.7 }}>
-          Admin Panel
-        </p>
+    <div style={sidebar}>
+      {/* Header */}
+      <div>
+        <h2 style={logo}>ZengCoders</h2>
+        <p style={subtitle}>Admin Panel</p>
       </div>
 
-      <div style={{ padding: "0 10px" }}>
+      {/* Menu */}
+      <nav style={nav}>
         {menus.map((menu) => {
           const isActive = location.pathname === menu.path;
+
           return (
             <Link
               key={menu.path}
               to={menu.path}
-              style={{
-                display: "block",
-                color: isActive ? "#fff" : "#cbd5e1",
-                background: isActive ? "#334155" : "transparent",
-                padding: "12px 20px",
-                margin: "4px 0",
-                borderRadius: "8px",
-                textDecoration: "none",
-                fontWeight: isActive ? "600" : "400",
-                transition: "all 0.3s",
-              }}
+              style={linkStyle(isActive)}
             >
               {menu.title}
             </Link>
           );
         })}
-      </div>
+      </nav>
+
+      {/* Logout */}
+      <button onClick={handleLogout} style={logoutBtn}>
+        Logout
+      </button>
     </div>
   );
 };
 
 export default AdminSidebar;
+
+/* ===== Styles (Teacher-style upgraded) ===== */
+
+const sidebar = {
+  width: "240px",
+  height: "100vh",
+  position: "fixed",
+  left: 0,
+  top: 0,
+  background: "linear-gradient(180deg, #0f172a, #1e293b)",
+  color: "#fff",
+  padding: "20px",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  boxShadow: "2px 0 10px rgba(0,0,0,0.2)",
+};
+
+/* Logo */
+const logo = {
+  fontSize: "20px",
+  fontWeight: "700",
+  marginBottom: "4px",
+  color: "#60a5fa",
+};
+
+const subtitle = {
+  fontSize: "13px",
+  opacity: 0.7,
+  marginBottom: "20px",
+};
+
+/* Nav */
+const nav = {
+  display: "flex",
+  flexDirection: "column",
+  gap: "8px",
+  flex: 1,
+};
+
+/* Link (active + hover style) */
+const linkStyle = (isActive) => ({
+  textDecoration: "none",
+  color: isActive ? "#fff" : "#cbd5e1",
+  background: isActive ? "#2563eb" : "transparent",
+  padding: "10px 12px",
+  borderRadius: "8px",
+  fontWeight: isActive ? "600" : "400",
+  transition: "0.2s",
+  display: "block",
+});
+
+/* Logout */
+const logoutBtn = {
+  marginTop: "20px",
+  width: "100%",
+  padding: "12px",
+  border: "none",
+  borderRadius: "8px",
+  background: "#ef4444",
+  color: "#fff",
+  cursor: "pointer",
+  fontWeight: "600",
+};

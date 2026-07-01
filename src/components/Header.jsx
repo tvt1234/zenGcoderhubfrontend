@@ -1,14 +1,35 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import courses from "../data/courses";
-import AuthModal from "./AuthModal";
 
-import { FaBars, FaTimes, FaChevronDown } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import AuthModal from "./AuthModal";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [courseOpen, setCourseOpen] = useState(false);
   const [authType, setAuthType] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
+  useEffect(() => {
+    const updateAuth = () => {
+      setToken(localStorage.getItem("token"));
+    };
+
+    window.addEventListener("authChanged", updateAuth);
+
+    return () => {
+      window.removeEventListener("authChanged", updateAuth);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.clear();
+
+    setToken(null);
+
+    window.dispatchEvent(new Event("authChanged"));
+  };
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <header
@@ -28,24 +49,21 @@ const Header = () => {
           alignItems: "center",
         }}
       >
-        {/* Logo */}
-        <div>
-          <h2
-            style={{
-              fontSize: "28px",
-              fontWeight: "bold",
-              color: "#38bdf8",
-            }}
-          >
-            ZengCoders
-          </h2>
-        </div>
+        <h2
+          style={{
+            fontSize: "28px",
+            fontWeight: "bold",
+            color: "#38bdf8",
+            margin: 0,
+          }}
+        >
+          ZengCoders
+        </h2>
 
-        {/* Desktop Menu */}
         <nav
           style={{
             display: "flex",
-            gap: "30px",
+            gap: "25px",
             alignItems: "center",
           }}
         >
@@ -53,112 +71,7 @@ const Header = () => {
             Home
           </Link>
 
-          {/* Dropdown */}
-          <div
-            style={{ position: "relative" }}
-            onMouseEnter={() => setCourseOpen(true)}
-            onMouseLeave={() => setCourseOpen(false)}
-           >
-            <button
-              style={{
-                ...linkStyle,
-                background: "transparent",
-                border: "none",
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                cursor: "pointer",
-              }}
-            >
-              Courses <FaChevronDown size={12} />
-            </button>
-
-            {courseOpen && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: "22px",
-                  left: 0,
-                  background: "white",
-                  color: "#111",
-                  width: "230px",
-                  borderRadius: "10px",
-                  boxShadow: "0 5px 15px rgba(0,0,0,0.2)",
-                  overflow: "hidden",
-                  zIndex: 9999,
-                }}
-              >
-                {courses.map((course) => (
-                  <Link
-                    key={course.name}
-                    to={`/course/${course.name}`}
-                    style={{
-                      display: "block",
-                      padding: "14px 18px",
-                      textDecoration: "none",
-                      color: "#111",
-                      borderBottom: "1px solid #f1f1f1",
-                    }}
-                    onClick={() => setCourseOpen(false)}
-                  >
-                    {course.name}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <Link to="/about" style={linkStyle}>
-            About
-          </Link>
-
-          <Link to="/careers" style={linkStyle}>
-            Careers
-          </Link>
-
-          <Link to="/contact" style={linkStyle}>
-            Contact
-          </Link>
-
-          <button onClick={() => setAuthType("login")} style={loginBtn}>
-            Login
-          </button>
-
-          <button onClick={() => setAuthType("signup")} style={signupBtn}>
-            Signup
-          </button>
-        </nav>
-
-              <AuthModal
-            type={authType}
-            isOpen={authType !== null}
-            onClose={() => setAuthType(null)}
-            />
-
-        {/* Mobile Menu Icon */}
-        <div
-          style={{ cursor: "pointer" }}
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div
-          style={{
-            marginTop: "20px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "18px",
-          }}
-        >
-          <Link to="/" style={linkStyle}>
-            Home
-          </Link>
-
-          <Link to="/" style={linkStyle}>
+          <Link to="/courses" style={linkStyle}>
             Courses
           </Link>
 
@@ -174,16 +87,105 @@ const Header = () => {
             Contact
           </Link>
 
-          <button style={loginBtn}>Login</button>
+          {token ? (
+            <button onClick={handleLogout} style={logoutBtn}>
+              Logout
+            </button>
+          ) : (
+            <>
+              <button
+                onClick={() => setAuthType("login")}
+                style={loginBtn}
+              >
+                Login
+              </button>
 
-          <button style={signupBtn}>Signup</button>
+              <button
+                onClick={() => setAuthType("signup")}
+                style={signupBtn}
+              >
+                Signup
+              </button>
+            </>
+          )}
+        </nav>
+
+        <div
+          style={{ cursor: "pointer" }}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+        </div>
+      </div>
+
+      <AuthModal
+        type={authType}
+        isOpen={authType !== null}
+        onClose={() => setAuthType(null)}
+      />
+
+      {menuOpen && (
+        <div
+          style={{
+            marginTop: "20px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "18px",
+          }}
+        >
+          <Link to="/" style={linkStyle} onClick={closeMenu}>
+            Home
+          </Link>
+
+          <Link to="/courses" style={linkStyle} onClick={closeMenu}>
+            Courses
+          </Link>
+
+          <Link to="/about" style={linkStyle} onClick={closeMenu}>
+            About
+          </Link>
+
+          <Link to="/careers" style={linkStyle} onClick={closeMenu}>
+            Careers
+          </Link>
+
+          <Link to="/contact" style={linkStyle} onClick={closeMenu}>
+            Contact
+          </Link>
+
+          {token ? (
+            <button onClick={handleLogout} style={logoutBtn}>
+              Logout
+            </button>
+          ) : (
+            <>
+              <button
+                onClick={() => {
+                  setAuthType("login");
+                  closeMenu();
+                }}
+                style={loginBtn}
+              >
+                Login
+              </button>
+
+              <button
+                onClick={() => {
+                  setAuthType("signup");
+                  closeMenu();
+                }}
+                style={signupBtn}
+              >
+                Signup
+              </button>
+            </>
+          )}
         </div>
       )}
     </header>
   );
 };
 
-/* Styles */
 const linkStyle = {
   color: "white",
   textDecoration: "none",
@@ -203,6 +205,15 @@ const loginBtn = {
 const signupBtn = {
   background: "#2563eb",
   color: "white",
+  border: "none",
+  padding: "10px 20px",
+  borderRadius: "8px",
+  cursor: "pointer",
+};
+
+const logoutBtn = {
+  background: "#dc2626",
+  color: "#fff",
   border: "none",
   padding: "10px 20px",
   borderRadius: "8px",
