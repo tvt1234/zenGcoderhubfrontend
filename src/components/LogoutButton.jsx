@@ -11,7 +11,7 @@ const LogoutButton = () => {
 
     sessionStorage.clear();
 
-    navigate("/login");
+    navigate("/");
   };
 
   return (
