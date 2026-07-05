@@ -150,7 +150,10 @@ const AuthModal = ({ type = "login", isOpen, onClose }) => {
               }}
             >
               <span
-                onClick={() => navigate("/forgot-password")}
+                onClick={() => {
+                  onClose(); // modal close
+                  navigate("/forgot-password"); // page open
+                }}
                 style={{
                   color: "#2563eb",
                   cursor: "pointer",
@@ -159,6 +162,7 @@ const AuthModal = ({ type = "login", isOpen, onClose }) => {
               >
                 Forgot Password?
               </span>
+              
             </div>
           )}
 

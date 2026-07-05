@@ -1,5 +1,7 @@
 
 import { useState } from "react";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 export default function Profile() {
   const [mobile, setMobile] = useState("");
@@ -12,7 +14,7 @@ export default function Profile() {
     try {
       setLoading(true);
 
-      const res = await fetch("http://localhost:5000/api/users/me", {
+      const res = await fetch(`${BACKEND_URL}/api/users/me`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

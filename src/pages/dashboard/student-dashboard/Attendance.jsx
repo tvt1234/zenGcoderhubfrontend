@@ -1,7 +1,8 @@
 
 import { useEffect, useState } from "react";
 
-const BASE = "http://localhost:5000/api";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const BASE = `${BACKEND_URL}/api`;
 
 export default function StudentAttendance() {
   const [attendance, setAttendance] = useState([]);

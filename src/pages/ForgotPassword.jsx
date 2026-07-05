@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -18,7 +19,7 @@ export default function ForgotPassword() {
       setLoading(true);
 
       const res = await fetch(
-        "http://localhost:5000/api/auth/forgot-password",
+      `${BACKEND_URL}/api/auth/forgot-password`,
         {
           method: "POST",
           headers: {

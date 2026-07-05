@@ -1,13 +1,15 @@
 
 
 import { useEffect, useState } from "react";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 export default function AllStudents() {
   const [students, setStudents] = useState([]);
 
   const fetchStudents = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/teacher/students");
+      const res = await fetch(`${BACKEND_URL}/api/teacher/students`);
       const data = await res.json();
       setStudents(data.students || []);
     } catch (err) {

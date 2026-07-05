@@ -1,8 +1,10 @@
-
 import AuthModal from "../components/AuthModal";
 import { useEffect, useState } from "react";
 
-const API_URL = "http://localhost:5000/api/courses";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const API_URL = `${BACKEND_URL}/api/courses`;
+
+
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
@@ -58,7 +60,7 @@ const Courses = () => {
       courses.map(async (c) => {
         try {
           const res = await fetch(
-            `http://localhost:5000/api/enrollments/check/${c._id}`,
+           `${BACKEND_URL}/api/enrollments/check/${c._id}`,
             {
               headers: { Authorization: `Bearer ${token}` },
             }
@@ -108,7 +110,7 @@ const Courses = () => {
       if (!price) return alert("Invalid price");
 
       const orderRes = await fetch(
-        "http://localhost:5000/api/payment/create-order",
+        `${BACKEND_URL}/api/payment/create-order`, 
         {
           method: "POST",
           headers: {
@@ -131,7 +133,7 @@ const Courses = () => {
         handler: async (response) => {
           try {
             const res = await fetch(
-              "http://localhost:5000/api/payment/verify-payment",
+             `${BACKEND_URL}/api/payment/verify-payment`,
               {
                 method: "POST",
                 headers: {
@@ -166,7 +168,7 @@ const Courses = () => {
   const downloadReceipt = async (courseId) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/payment/receipt/pdf/${courseId}`,
+        `${BACKEND_URL}/api/payment/receipt/pdf/${courseId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

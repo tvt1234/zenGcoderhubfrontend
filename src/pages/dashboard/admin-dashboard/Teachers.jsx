@@ -1,7 +1,8 @@
-
 import { useEffect, useState } from "react";
 
-const API = "http://localhost:5000/api/teachers";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const API = `${BACKEND_URL}/api/teachers`;
+
 
 const Teachers = () => {
   const [teachers, setTeachers] = useState([]);

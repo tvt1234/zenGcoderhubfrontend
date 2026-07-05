@@ -1,5 +1,7 @@
 
 import { useEffect, useState } from "react";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 export default function TeacherDashboard() {
   const [user, setUser] = useState(null);
@@ -25,10 +27,10 @@ export default function TeacherDashboard() {
 
       const [studentsRes, assignmentsRes, attendanceRes, coursesRes] =
         await Promise.all([
-          fetch("http://localhost:5000/api/students"),
-          fetch("http://localhost:5000/api/assignments"),
-          fetch("http://localhost:5000/api/attendance"),
-          fetch("http://localhost:5000/api/courses"),
+          fetch(`${BACKEND_URL}/api/students`),
+          fetch(`${BACKEND_URL}/api/assignments`),
+          fetch(`${BACKEND_URL}/api/attendance`),
+          fetch(`${BACKEND_URL}/api/courses`),
         ]);
 
       const students = await studentsRes.json();
@@ -43,8 +45,8 @@ export default function TeacherDashboard() {
         courses: Array.isArray(courses?.data)
           ? courses.data.length
           : Array.isArray(courses)
-          ? courses.length
-          : 0,
+            ? courses.length
+            : 0,
       });
     } catch (error) {
       console.error("Stats error:", error);

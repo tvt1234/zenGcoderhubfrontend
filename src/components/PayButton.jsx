@@ -1,3 +1,5 @@
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 const loadRazorpay = () => {
     return new Promise((resolve) => {
         const script = document.createElement("script");
@@ -33,7 +35,7 @@ const PayButton = ({ course, enrollmentId }) => {
 
             // 3. Create Order
             const orderRes = await fetch(
-                "http://localhost:5000/api/payment/create-order",
+                `${BACKEND_URL}/api/payment/create-order`,
                 {
                     method: "POST",
                     headers: {
@@ -63,7 +65,7 @@ const PayButton = ({ course, enrollmentId }) => {
                 handler: async function (response) {
                     try {
                         const verifyRes = await fetch(
-                            "http://localhost:5000/api/payment/verify-payment",
+                            `${BACKEND_URL}/api/payment/verify-payment`,
                             {
                                 method: "POST",
                                 headers: {

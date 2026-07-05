@@ -1,6 +1,7 @@
 
 
 import { useState } from "react";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Contact = () => {
   const [form, setForm] = useState({
@@ -23,7 +24,7 @@ const Contact = () => {
       setSuccess("");
 
       const res = await fetch(
-        "http://localhost:5000/api/contact/send",
+         `${BACKEND_URL}/api/contact/send`,
         {
           method: "POST",
           headers: {

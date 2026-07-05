@@ -2,6 +2,9 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
+
 export default function ResetPassword() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -19,7 +22,7 @@ export default function ResetPassword() {
       setLoading(true);
 
       const res = await fetch(
-        "http://localhost:5000/api/auth/verify-otp",
+         `${BACKEND_URL}/api/auth/verify-otp`,
         {
           method: "POST",
           headers: {
