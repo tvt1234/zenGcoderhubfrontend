@@ -40,7 +40,7 @@ export default function ResetPassword() {
 
       if (data.success) {
         alert("Password reset successful");
-        navigate("/login");
+        navigate("/");
       } else {
         alert(data.message || "Reset failed");
       }

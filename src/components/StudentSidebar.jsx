@@ -16,7 +16,7 @@ const StudentSidebar = () => {
   const handleLogout = () => {
     localStorage.clear();
     sessionStorage.clear();
-    navigate("/login");
+    navigate("/");
   };
 
   return (
