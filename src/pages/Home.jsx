@@ -353,7 +353,7 @@ const Home = () => {
               color: "#2563eb",
             }}
           >
-            {i + 1}
+           
           </h2>
 
           <h4>{step}</h4>
