@@ -47,11 +47,11 @@ const AdminDashboard = () => {
           <h2 style={{ marginBottom: "15px" }}>📋 Recent Activities</h2>
 
           <ul style={{ lineHeight: "2" }}>
-            <li>✅ New student registered</li>
-            <li>✅ Teacher approved</li>
-            <li>✅ Course published</li>
-            <li>✅ Payment received</li>
-            <li>✅ New batch created</li>
+            <li> New student registered</li>
+            <li> Teacher approved</li>
+            <li> Course published</li>
+            <li> Payment received</li>
+            <li> New batch created</li>
           </ul>
         </div>
 

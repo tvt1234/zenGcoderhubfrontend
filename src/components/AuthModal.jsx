@@ -170,7 +170,7 @@ const AuthModal = ({ type = "login", isOpen, onClose }) => {
             <select name="role" onChange={handleChange} style={input}>
               <option value="student">Student</option>
               <option value="teacher">Teacher</option>
-              <option value="admin">Admin</option>
+              {/* <option value="admin">Admin</option> */}
             </select>
           )}
 
