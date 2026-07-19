@@ -115,7 +115,7 @@ const About = () => {
               color: "#475569",
             }}
           >
-            Founded in 2026, ZengCoders is a leading industrial training provider 
+            Founded in 2026, GenZCoders is a leading industrial training provider 
 specializing in IT, Computer Science, and AIML (Artificial Intelligence & Machine Learning). 
 
 Our programs are meticulously designed in collaboration with industry experts, 

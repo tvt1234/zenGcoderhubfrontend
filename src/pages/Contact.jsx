@@ -126,9 +126,9 @@ const Contact = () => {
         <div>
           <h2>Contact Information</h2>
 
-          <p>📍 ZengCoders Tech Park, Hyderabad, India</p>
+          <p>📍 GenZCoders Tech Park, Hyderabad, India</p>
           <p>📞 +91 9211035927</p>
-          <p>📧 support@zengcoders.com</p>
+          <p>📧 support@genzcoders.com</p>
           <p>🕒 Mon - Sat: 9AM - 7PM</p>
 
           <iframe

@@ -57,7 +57,7 @@ const Header = () => {
             margin: 0,
           }}
         >
-          ZengCoders
+         GenZCoders
         </h2>
 
         <nav

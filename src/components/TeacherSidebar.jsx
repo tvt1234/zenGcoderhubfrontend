@@ -25,7 +25,7 @@ const TeacherSidebar = () => {
     <div style={sidebar}>
       {/* Header */}
       <div>
-        <h2 style={logo}>ZengCoders</h2>
+        <h2 style={logo}>GenZCoders</h2>
         <p style={subtitle}>Teacher Panel</p>
       </div>
 

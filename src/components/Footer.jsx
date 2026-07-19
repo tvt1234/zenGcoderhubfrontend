@@ -38,7 +38,7 @@ const Footer = () => {
               marginBottom: "15px",
             }}
           >
-            ZengCoders
+            GenZCoders
           </h2>
 
           <p
@@ -132,7 +132,7 @@ const Footer = () => {
 
           <ContactItem
             icon={<FaMapMarkerAlt />}
-            text="ZengCoders DLF PHASE 3,GURGAON, HARYANA"
+            text="GenZCoders DLF PHASE 3,GURGAON, HARYANA"
           />
 
           <ContactItem
@@ -142,7 +142,7 @@ const Footer = () => {
 
           <ContactItem
             icon={<FaEnvelope />}
-            text="support@zengcoders.com"
+            text="support@genzcoders.com"
           />
 
           {/* Newsletter */}
@@ -192,7 +192,7 @@ const Footer = () => {
           color: "#94a3b8",
         }}
       >
-        © 2026 ZengCoders. All Rights Reserved.
+        © 2026 GenZCoders. All Rights Reserved.
       </div>
     </footer>
   );

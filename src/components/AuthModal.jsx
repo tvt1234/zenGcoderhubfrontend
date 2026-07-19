@@ -55,7 +55,6 @@ const AuthModal = ({ type = "login", isOpen, onClose }) => {
 
       // ================= SIGNUP =================
       if (mode === "signup") {
-        alert("Signup successful! Please login now.");
         setMode("login");
         setLoading(false);
         return;
@@ -85,7 +84,7 @@ const AuthModal = ({ type = "login", isOpen, onClose }) => {
       else navigate("/student");
 
     } catch (err) {
-      alert(err.message);
+      console.log(err.message);
     } finally {
       setLoading(false);
     }
