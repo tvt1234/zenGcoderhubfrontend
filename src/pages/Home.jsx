@@ -362,54 +362,7 @@ const Home = () => {
     </div>
   </div>
 </section>
-<section
-  style={{
-    padding: "90px 20px",
-    background: "#0f172a",
-    color: "#fff",
-  }}
->
-  <div
-    style={{
-      maxWidth: "1100px",
-      margin: "auto",
-      textAlign: "center",
-    }}
-  >
-    <h2
-      style={{
-        fontSize: "45px",
-      }}
-    >
-      Placement & Career Support
-    </h2>
 
-    <p
-      style={{
-        marginTop: "25px",
-        color: "#cbd5e1",
-        lineHeight: "34px",
-        fontSize: "18px",
-      }}
-    >
-      We don't just teach technology—we prepare you
-      for your career. Our dedicated placement support
-      includes resume reviews, LinkedIn optimization,
-      coding assessments, mock interviews, soft skills
-      training, and referrals to hiring companies.
-    </p>
-
-    <button
-      style={{
-        ...primaryBtn,
-        marginTop: "35px",
-      }}
-      onClick={() => setOpen(true)}
-    >
-      Start Learning Today
-    </button>
-  </div>
-</section>
 
       <StatsSection />
       <Testimonials />
