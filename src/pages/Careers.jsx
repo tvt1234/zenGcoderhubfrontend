@@ -50,7 +50,7 @@ const Careers = () => {
             marginBottom: "50px",
           }}
         >
-          Reasons to become a ZengCoder
+          Reasons to become a genZCoder
         </h2>
 
         <div
