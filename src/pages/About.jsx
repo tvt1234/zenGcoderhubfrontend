@@ -1,170 +1,288 @@
-const About = () => {
-  return (
-    <div style={{ background: "#f8fafc" }}>
-      {/* HERO SECTION */}
-      <section
-        style={{
-          background:
-            "linear-gradient(to right, #0f172a, #1e3a8a)",
-          color: "white",
-          padding: "100px 20px",
-          textAlign: "center",
-        }}
-      >
-        <h1
+{/* WHY CHOOSE US */}
+<section
+  style={{
+    padding: "80px 20px",
+    background: "#ffffff",
+  }}
+>
+  <div
+    style={{
+      maxWidth: "1200px",
+      margin: "auto",
+      textAlign: "center",
+    }}
+  >
+    <h2
+      style={{
+        fontSize: "42px",
+        marginBottom: "20px",
+      }}
+    >
+      Why Choose GenZCoders?
+    </h2>
+
+    <p
+      style={{
+        color: "#64748b",
+        fontSize: "18px",
+        maxWidth: "800px",
+        margin: "auto",
+        lineHeight: "32px",
+      }}
+    >
+      We bridge the gap between academic learning and
+      industry expectations by delivering practical,
+      project-based education designed by experienced
+      software engineers.
+    </p>
+
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns:
+          "repeat(auto-fit,minmax(260px,1fr))",
+        gap: "30px",
+        marginTop: "50px",
+      }}
+    >
+      {[
+        {
+          title: "Live Interactive Classes",
+          text: "Learn directly from experienced industry mentors through live sessions and real-time doubt solving.",
+        },
+        {
+          title: "Hands-on Projects",
+          text: "Build real-world applications that strengthen your portfolio and improve your practical knowledge.",
+        },
+        {
+          title: "Industry Curriculum",
+          text: "Courses are regularly updated according to current market trends and technologies.",
+        },
+        {
+          title: "Placement Assistance",
+          text: "Resume preparation, mock interviews, coding assessments, and career guidance.",
+        },
+      ].map((item) => (
+        <div
+          key={item.title}
           style={{
-            fontSize: "50px",
-            fontWeight: "bold",
+            padding: "30px",
+            borderRadius: "16px",
+            background: "#f8fafc",
+            boxShadow: "0 5px 15px rgba(0,0,0,.08)",
           }}
         >
-          We Transform Lives by Empowering People Via
-          Digital Skills
-        </h1>
-
-        <p
-          style={{
-            marginTop: "20px",
-            fontSize: "20px",
-            color: "#cbd5e1",
-          }}
-        >
-          Build your career with industry-ready
-          engineering & digital skills
-        </p>
-      </section>
-
-      {/* STATS SECTION */}
-      <section
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "40px",
-          padding: "60px 20px",
-          flexWrap: "wrap",
-        }}
-      >
-        {[
-          { num: "8M+", label: "Careers Advanced" },
-          {
-            num: "1500+",
-            label: "Live Classes / Month",
-          },
-          { num: "400+", label: "Courses" },
-        ].map((item) => (
-          <div
-            key={item.num}
+          <h3
             style={{
-              background: "white",
-              padding: "30px",
-              borderRadius: "15px",
-              textAlign: "center",
-              width: "250px",
-              boxShadow:
-                "0 5px 15px rgba(0,0,0,0.1)",
+              color: "#2563eb",
+              marginBottom: "15px",
             }}
           >
-            <h2
-              style={{
-                fontSize: "40px",
-                color: "#2563eb",
-              }}
-            >
-              {item.num}
-            </h2>
-            <p>{item.label}</p>
-          </div>
-        ))}
-      </section>
-
-      {/* IMAGE SECTION */}
-      <section
-        style={{
-          display: "grid",
-          gridTemplateColumns:
-            "repeat(auto-fit, minmax(300px, 1fr))",
-          alignItems: "center",
-          gap: "40px",
-          padding: "60px 20px",
-          maxWidth: "1200px",
-          margin: "auto",
-        }}
-      >
-        <img
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
-          alt="students"
-          style={{
-            width: "100%",
-            borderRadius: "20px",
-          }}
-        />
-
-        <div>
-          <h2
-            style={{
-              fontSize: "40px",
-              marginBottom: "20px",
-            }}
-          >
-            Who We Are
-          </h2>
+            {item.title}
+          </h3>
 
           <p
             style={{
-              fontSize: "18px",
-              lineHeight: "32px",
               color: "#475569",
+              lineHeight: "28px",
             }}
           >
-            Founded in 2026, GenZCoders is a leading industrial training provider 
-specializing in IT, Computer Science, and AIML (Artificial Intelligence & Machine Learning). 
-
-Our programs are meticulously designed in collaboration with industry experts, 
-corporations, and universities. We offer live interactive classes, hands-on real-world 
-projects, and practical training tailored for engineers and professionals.
-          </p>
-
-          <p
-            style={{
-              marginTop: "15px",
-              fontSize: "18px",
-              lineHeight: "32px",
-              color: "#475569",
-            }}
-          >
-            We empower learners across the globe with
-            modern technologies like React, Node.js,
-            AWS, Docker, Kafka, MongoDB, and more.
+            {item.text}
           </p>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
-      {/* FINAL BANNER */}
-      <section
-        style={{
-          background:
-            "linear-gradient(to right, #1e3a8a, #06b6d4)",
-          padding: "80px 20px",
-          textAlign: "center",
-          color: "white",
-        }}
-      >
-        <h2
+{/* OUR LEARNING PROCESS */}
+<section
+  style={{
+    padding: "80px 20px",
+    background: "#f1f5f9",
+  }}
+>
+  <div
+    style={{
+      maxWidth: "1200px",
+      margin: "auto",
+    }}
+  >
+    <h2
+      style={{
+        textAlign: "center",
+        fontSize: "42px",
+        marginBottom: "60px",
+      }}
+    >
+      Our Learning Journey
+    </h2>
+
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns:
+          "repeat(auto-fit,minmax(220px,1fr))",
+        gap: "30px",
+      }}
+    >
+      {[
+        "Enroll in your desired course",
+        "Attend live interactive classes",
+        "Complete assignments & projects",
+        "Receive mentor feedback",
+        "Build an impressive portfolio",
+        "Prepare for interviews",
+        "Get placement assistance",
+        "Launch your career",
+      ].map((step, index) => (
+        <div
+          key={index}
           style={{
-            fontSize: "45px",
-            marginBottom: "20px",
+            background: "#fff",
+            padding: "25px",
+            borderRadius: "15px",
+            textAlign: "center",
           }}
         >
-          Empowering Professionals With Future-Ready
-          Skills
-        </h2>
+          <div
+            style={{
+              width: "55px",
+              height: "55px",
+              background: "#2563eb",
+              color: "#fff",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              margin: "0 auto 20px",
+              fontSize: "22px",
+              fontWeight: "bold",
+            }}
+          >
+            {index + 1}
+          </div>
 
-        <p style={{ fontSize: "20px" }}>
-          Learn. Build. Grow. Get placed in top
-          companies.
-        </p>
-      </section>
+          <p
+            style={{
+              lineHeight: "28px",
+              color: "#475569",
+            }}
+          >
+            {step}
+          </p>
+        </div>
+      ))}
     </div>
-  );
-};
+  </div>
+</section>
 
-export default About;
+{/* OUR MISSION */}
+<section
+  style={{
+    padding: "80px 20px",
+    background: "#ffffff",
+  }}
+>
+  <div
+    style={{
+      maxWidth: "1000px",
+      margin: "auto",
+      textAlign: "center",
+    }}
+  >
+    <h2
+      style={{
+        fontSize: "42px",
+        marginBottom: "25px",
+      }}
+    >
+      Our Mission
+    </h2>
+
+    <p
+      style={{
+        fontSize: "18px",
+        color: "#475569",
+        lineHeight: "34px",
+      }}
+    >
+      Our mission is to make high-quality technical
+      education accessible to every learner regardless
+      of background. We believe that practical
+      knowledge, continuous mentorship, and real-world
+      project experience are the foundation of a
+      successful technology career. Through innovative
+      teaching methodologies, industry partnerships,
+      and career-focused programs, we help students
+      gain confidence, master in-demand technologies,
+      and secure opportunities with leading companies.
+    </p>
+  </div>
+</section>
+
+{/* TECHNOLOGIES */}
+<section
+  style={{
+    padding: "80px 20px",
+    background: "#0f172a",
+    color: "#fff",
+  }}
+>
+  <div
+    style={{
+      maxWidth: "1200px",
+      margin: "auto",
+      textAlign: "center",
+    }}
+  >
+    <h2
+      style={{
+        fontSize: "42px",
+        marginBottom: "40px",
+      }}
+    >
+      Technologies We Teach
+    </h2>
+
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        gap: "15px",
+      }}
+    >
+      {[
+        "React.js",
+        "Next.js",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "PostgreSQL",
+        "MySQL",
+        "Docker",
+        "AWS",
+        "Redis",
+        "GraphQL",
+        "Kafka",
+        "TypeScript",
+        "Python",
+        "AI & ML",
+        "Git & GitHub",
+      ].map((tech) => (
+        <span
+          key={tech}
+          style={{
+            padding: "12px 22px",
+            background: "#1e293b",
+            borderRadius: "30px",
+            fontSize: "17px",
+          }}
+        >
+          {tech}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>
