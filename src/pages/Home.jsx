@@ -63,16 +63,145 @@ const Home = () => {
   return (
     <div>
       {/* Hero Section - remains same */}
-      <section
-        style={{
-          background: "linear-gradient(to right, #020617, #1e3a8a)",
-          color: "white",
-          padding: "100px 20px",
-        }}
-      >
-        {/* Your existing hero section code... */}
-      </section>
+      <div
+  style={{
+    maxWidth: "1300px",
+    margin: "0 auto",
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit,minmax(400px,1fr))",
+    alignItems: "center",
+    gap: "50px",
+  }}
+>
+  <div>
+    <h1
+      style={{
+        fontSize: "58px",
+        lineHeight: "70px",
+        fontWeight: "bold",
+      }}
+    >
+      Learn In-Demand Tech Skills & Build Your Dream Career
+    </h1>
 
+    <p
+      style={{
+        marginTop: "25px",
+        fontSize: "20px",
+        color: "#cbd5e1",
+        lineHeight: "34px",
+      }}
+    >
+      Master Full Stack Development, Cloud Computing,
+      Artificial Intelligence, Machine Learning,
+      DevOps, Data Structures & Algorithms, and more
+      through live classes, hands-on projects, and
+      expert mentorship.
+    </p>
+
+    <div
+      style={{
+        display: "flex",
+        gap: "20px",
+        marginTop: "40px",
+        flexWrap: "wrap",
+      }}
+    >
+      <button
+        style={primaryBtn}
+        onClick={() => setOpen(true)}
+      >
+        Explore Courses
+      </button>
+
+      <button
+        style={secondaryBtn}
+        onClick={() => navigate("/about")}
+      >
+        Learn More
+      </button>
+    </div>
+  </div>
+
+  <img
+    src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900"
+    alt="Learning"
+    style={{
+      width: "100%",
+      borderRadius: "20px",
+    }}
+  />
+</div>
+      <section
+  style={{
+    padding: "90px 20px",
+    background: "#f8fafc",
+  }}
+>
+  <div
+    style={{
+      maxWidth: "1200px",
+      margin: "auto",
+      textAlign: "center",
+    }}
+  >
+    <h2
+      style={{
+        fontSize: "45px",
+        marginBottom: "20px",
+      }}
+    >
+      Why Learn With GenZCoders?
+    </h2>
+
+    <p
+      style={{
+        color: "#64748b",
+        maxWidth: "850px",
+        margin: "auto",
+        fontSize: "18px",
+        lineHeight: "30px",
+      }}
+    >
+      Learn directly from industry professionals through
+      practical training, live coding sessions, and
+      real-world projects.
+    </p>
+
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns:
+          "repeat(auto-fit,minmax(250px,1fr))",
+        gap: "30px",
+        marginTop: "50px",
+      }}
+    >
+      {[
+        "Live Interactive Classes",
+        "Hands-on Projects",
+        "Industry Mentors",
+        "Placement Assistance",
+        "Resume Building",
+        "Mock Interviews",
+        "Lifetime Course Access",
+        "Certificates",
+      ].map((item) => (
+        <div
+          key={item}
+          style={{
+            background: "#fff",
+            padding: "30px",
+            borderRadius: "15px",
+            boxShadow: "0 5px 15px rgba(0,0,0,.08)",
+          }}
+        >
+          <h3>{item}</h3>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
       {/* Technologies Section */}
       <section style={{ padding: "80px 20px", background: "#ffffff" }}>
         <div style={{ maxWidth: "1300px", margin: "auto" }}>
