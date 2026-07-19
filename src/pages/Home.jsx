@@ -299,6 +299,118 @@ const Home = () => {
         </div>
       </section>
 
+      <section
+  style={{
+    padding: "90px 20px",
+    background: "#fff",
+  }}
+>
+  <div
+    style={{
+      maxWidth: "1200px",
+      margin: "auto",
+    }}
+  >
+    <h2
+      style={{
+        textAlign: "center",
+        fontSize: "45px",
+        marginBottom: "60px",
+      }}
+    >
+      Your Learning Journey
+    </h2>
+
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns:
+          "repeat(auto-fit,minmax(200px,1fr))",
+        gap: "25px",
+      }}
+    >
+      {[
+        "Choose Course",
+        "Live Classes",
+        "Assignments",
+        "Projects",
+        "Mentorship",
+        "Mock Interviews",
+        "Certification",
+        "Placement",
+      ].map((step, i) => (
+        <div
+          key={step}
+          style={{
+            background: "#eff6ff",
+            padding: "25px",
+            borderRadius: "15px",
+            textAlign: "center",
+          }}
+        >
+          <h2
+            style={{
+              color: "#2563eb",
+            }}
+          >
+            {i + 1}
+          </h2>
+
+          <h4>{step}</h4>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+<section
+  style={{
+    padding: "90px 20px",
+    background: "#0f172a",
+    color: "#fff",
+  }}
+>
+  <div
+    style={{
+      maxWidth: "1100px",
+      margin: "auto",
+      textAlign: "center",
+    }}
+  >
+    <h2
+      style={{
+        fontSize: "45px",
+      }}
+    >
+      Placement & Career Support
+    </h2>
+
+    <p
+      style={{
+        marginTop: "25px",
+        color: "#cbd5e1",
+        lineHeight: "34px",
+        fontSize: "18px",
+      }}
+    >
+      We don't just teach technology—we prepare you
+      for your career. Our dedicated placement support
+      includes resume reviews, LinkedIn optimization,
+      coding assessments, mock interviews, soft skills
+      training, and referrals to hiring companies.
+    </p>
+
+    <button
+      style={{
+        ...primaryBtn,
+        marginTop: "35px",
+      }}
+      onClick={() => setOpen(true)}
+    >
+      Start Learning Today
+    </button>
+  </div>
+</section>
+
       <StatsSection />
       <Testimonials />
       <JoinNowModal isOpen={open} onClose={() => setOpen(false)} />
